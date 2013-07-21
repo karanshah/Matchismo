@@ -7,10 +7,12 @@
 //
 
 #import "CardMatchingGame.h"
+#import "PlayingCard.h"
 
 @interface CardMatchingGame()
 @property (strong, nonatomic) NSMutableArray *cards;
 @property (nonatomic, readwrite) int score;
+@property (nonatomic, readwrite) NSString *result;
 @end
 
 @implementation CardMatchingGame
@@ -48,25 +50,29 @@
 #define FLIP_COST 1
 
 - (void)flipCardAtIndex:(NSUInteger)index {
-    Card *card = [self cardAtIndex:index];
+    PlayingCard *card = (PlayingCard *)[self cardAtIndex:index];
     if (!card.isUnplayable) {
         if (!card.isFaceUP) {
+            NSArray *resultArray = @[@"Flipped up ", card.contents];
             //see if flipping this card up creates a match
-            for (Card *otherCard in self.cards) {
+            for (PlayingCard *otherCard in self.cards) {
                 if (otherCard.isFaceUP && !otherCard.isUnplayable) {
                     int matchScore = [card match:@[otherCard]];
                     if (matchScore) {
                         otherCard.unplayable = YES;
                         card.unplayable = YES;
                         self.score += matchScore * MATCH_BONUS;
+                        resultArray = @[@"Matched", card.contents, @"&", otherCard.contents, @"for", [[NSString alloc] initWithFormat:@"%d", matchScore * MATCH_BONUS], @"points"];
                     }
                     else {
                         otherCard.faceUp = NO;
                         self.score -= MISMATCH_PENALTY;
+                        resultArray = @[card.contents, @"&", otherCard.contents, @"don't", @"match!", [[NSString alloc] initWithFormat:@"%d", MISMATCH_PENALTY], @"point penalty!"];
                     }
                 }
             }
             self.score -= FLIP_COST;
+            self.result = [resultArray componentsJoinedByString:@" "];
         }
         card.faceUp = !card.faceUp;
     }
