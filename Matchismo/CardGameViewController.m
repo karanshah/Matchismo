@@ -18,6 +18,7 @@
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (strong, nonatomic) IBOutlet UIButton *dealButton;
 @end
 
 @implementation CardGameViewController
@@ -56,6 +57,12 @@
     _flipCount = flipCount;
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
     NSLog(@"flips updated to %d", self.flipCount);
+}
+
+- (IBAction)dealNewGame:(UIButton *)sender {
+    self.game = nil;
+    self.flipCount = 0;
+    [self updateUI];
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
