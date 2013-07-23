@@ -23,4 +23,6 @@
 
 @property (nonatomic, readonly) NSString *result;
 
+@property (nonatomic) NSInteger gameType;
+
 @end

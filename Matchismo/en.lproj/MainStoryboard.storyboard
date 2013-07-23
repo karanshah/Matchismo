@@ -282,8 +282,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="USb-QL-80m">
-                                <rect key="frame" x="20" y="10" width="280" height="45"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="USb-QL-80m">
+                                <rect key="frame" x="20" y="10" width="208" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -304,12 +304,20 @@
                                     <action selector="dealNewGame:" destination="2" eventType="touchUpInside" id="dNm-6l-jnB"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="LNy-Q1-5Bs">
+                                <rect key="frame" x="236" y="5" width="64" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="dealButton" destination="gDQ-Ml-fWo" id="bcy-BD-UTL"/>
                         <outlet property="flipsLabel" destination="fdz-Ey-PnJ" id="jIM-E9-Ljr"/>
+                        <outlet property="gameTypeSegment" destination="LNy-Q1-5Bs" id="bm4-WP-nur"/>
                         <outlet property="resultLabel" destination="USb-QL-80m" id="tCD-Pe-slt"/>
                         <outlet property="scoreLabel" destination="2Pa-Cj-l4A" id="KIT-XZ-Kg3"/>
                         <outletCollection property="cardButtons" destination="pea-wx-P74" id="RoF-YN-vLG"/>
@@ -341,8 +349,8 @@
             <relationships>
                 <relationship kind="action" name="dealNewGame:" candidateClass="UIButton"/>
                 <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dealButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="flipsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="gameTypeSegment" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="resultLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>

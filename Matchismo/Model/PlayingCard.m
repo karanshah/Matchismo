@@ -22,7 +22,14 @@
             score = 4;
         }
     }
-    
+    else if (otherCards.count == 2) {
+        if([[[otherCards objectAtIndex:0] suit] isEqualToString:self.suit] && [[[otherCards objectAtIndex:1] suit] isEqualToString:self.suit]) {
+            score = 2;
+        }
+        else if ([[otherCards objectAtIndex:0] rank] == self.rank && [[otherCards objectAtIndex:1] rank] == self.rank) {
+            score = 6;
+        }
+    }
     return score;
 }
 
