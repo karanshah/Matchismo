@@ -37,11 +37,24 @@
     return _game;
 }
 
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    [self updateUI];
+}
+
 - (void) updateUI {
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        [cardButton setTitle:[card contents] forState:UIControlStateSelected];
-        [cardButton setTitle:[card contents] forState:UIControlStateSelected|UIControlStateDisabled];
+        UIImage *cardBackImage = [UIImage imageNamed:@"cardback.jpg"];
+        if (!card.faceUp && !card.unplayable) {
+            [cardButton setImage:cardBackImage forState:UIControlStateNormal];
+//            [cardButton setImageEdgeInsets:UIEdgeInsetsMake(3, 0, 3, 0)];
+        }
+        else {
+            [cardButton setImage:nil forState:UIControlStateNormal];
+            [cardButton setTitle:[card contents] forState:UIControlStateSelected];
+            [cardButton setTitle:[card contents] forState:UIControlStateSelected|UIControlStateDisabled];
+        }    
         cardButton.selected = card.isFaceUP;
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;

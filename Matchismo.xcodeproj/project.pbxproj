@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC2A618C179E39000077016E /* cardback.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FC2A618B179E39000077016E /* cardback.jpg */; };
 		FC8516E0179766190044A628 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8516DF179766190044A628 /* UIKit.framework */; };
 		FC8516E2179766190044A628 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8516E1179766190044A628 /* Foundation.framework */; };
 		FC8516E4179766190044A628 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8516E3179766190044A628 /* CoreGraphics.framework */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC2A618B179E39000077016E /* cardback.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cardback.jpg; sourceTree = "<group>"; };
 		FC8516DC179766190044A628 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8516DF179766190044A628 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC8516E1179766190044A628 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -110,6 +112,7 @@
 		FC8516E6179766190044A628 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FC2A618B179E39000077016E /* cardback.jpg */,
 				FC8516EE179766190044A628 /* CardGameAppDelegate.h */,
 				FC8516EF179766190044A628 /* CardGameAppDelegate.m */,
 				FC8516E7179766190044A628 /* Matchismo-Info.plist */,
@@ -197,6 +200,7 @@
 				FC8516F4179766190044A628 /* Default@2x.png in Resources */,
 				FC8516F6179766190044A628 /* Default-568h@2x.png in Resources */,
 				FC8516F9179766190044A628 /* MainStoryboard.storyboard in Resources */,
+				FC2A618C179E39000077016E /* cardback.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
