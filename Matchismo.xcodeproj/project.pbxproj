@@ -24,6 +24,7 @@
 		FC85170B17977AD50044A628 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = FC85170A17977AD50044A628 /* PlayingCard.m */; };
 		FC85170E17977EF20044A628 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = FC85170D17977EF20044A628 /* PlayingCardDeck.m */; };
 		FC90FE0417999167005F6CC7 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC90FE0317999167005F6CC7 /* CardMatchingGame.m */; };
+		FCD4794117A1ED7100213F6D /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD4794017A1ED7100213F6D /* SetViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		FC85170D17977EF20044A628 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
 		FC90FE0217999167005F6CC7 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Model/CardMatchingGame.h; sourceTree = "<group>"; };
 		FC90FE0317999167005F6CC7 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Model/CardMatchingGame.m; sourceTree = "<group>"; };
+		FCD4793F17A1ED7100213F6D /* SetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
+		FCD4794017A1ED7100213F6D /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 				FC8516FA179766190044A628 /* CardGameViewController.h */,
 				FC8516FB179766190044A628 /* CardGameViewController.m */,
 				FC8516E6179766190044A628 /* Supporting Files */,
+				FCD4793F17A1ED7100213F6D /* SetViewController.h */,
+				FCD4794017A1ED7100213F6D /* SetViewController.m */,
 			);
 			path = Matchismo;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				FC85170B17977AD50044A628 /* PlayingCard.m in Sources */,
 				FC85170E17977EF20044A628 /* PlayingCardDeck.m in Sources */,
 				FC90FE0417999167005F6CC7 /* CardMatchingGame.m in Sources */,
+				FCD4794117A1ED7100213F6D /* SetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
