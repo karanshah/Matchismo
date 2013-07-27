@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC13138317A32117008AA72B /* MatchCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC13138217A32117008AA72B /* MatchCardGameViewController.m */; };
 		FC2A618C179E39000077016E /* cardback.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FC2A618B179E39000077016E /* cardback.jpg */; };
 		FC8516E0179766190044A628 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8516DF179766190044A628 /* UIKit.framework */; };
 		FC8516E2179766190044A628 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8516E1179766190044A628 /* Foundation.framework */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC13138117A32117008AA72B /* MatchCardGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchCardGameViewController.h; sourceTree = "<group>"; };
+		FC13138217A32117008AA72B /* MatchCardGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCardGameViewController.m; sourceTree = "<group>"; };
 		FC2A618B179E39000077016E /* cardback.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cardback.jpg; sourceTree = "<group>"; };
 		FC8516DC179766190044A628 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8516DF179766190044A628 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -110,6 +113,8 @@
 				FC8516E6179766190044A628 /* Supporting Files */,
 				FCD4793F17A1ED7100213F6D /* SetViewController.h */,
 				FCD4794017A1ED7100213F6D /* SetViewController.m */,
+				FC13138117A32117008AA72B /* MatchCardGameViewController.h */,
+				FC13138217A32117008AA72B /* MatchCardGameViewController.m */,
 			);
 			path = Matchismo;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 				FC85170E17977EF20044A628 /* PlayingCardDeck.m in Sources */,
 				FC90FE0417999167005F6CC7 /* CardMatchingGame.m in Sources */,
 				FCD4794117A1ED7100213F6D /* SetViewController.m in Sources */,
+				FC13138317A32117008AA72B /* MatchCardGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

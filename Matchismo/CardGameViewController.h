@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CardMatchingGame.h"
 
 @interface CardGameViewController : UIViewController
+
+@property (strong, nonatomic) CardMatchingGame *game;
+
+- (void) updateGame:(NSArray*) cardButtons;
 
 @end

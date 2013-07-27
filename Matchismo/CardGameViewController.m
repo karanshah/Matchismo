@@ -17,23 +17,25 @@
 @property (nonatomic) NSInteger gameType;
 @property (strong, nonatomic) Deck *deck;
 @property (strong, nonatomic) IBOutlet UILabel *resultLabel;
-@property (strong, nonatomic) CardMatchingGame *game;
+
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 @end
 
 @implementation CardGameViewController
 
+//Subclasses should implement this
 - (Deck *)deck {
-    if (!_deck) {
-        _deck = [[PlayingCardDeck alloc] init];
-    }
-    return _deck;
+    return nil;
+}
+
+- (void) updateGame:(NSArray *)cardButtons {
+
 }
 
 - (CardMatchingGame *)game {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
-                                                          usingDeck:[[PlayingCardDeck alloc] init]];
+                                                          usingDeck:[self deck]];
     return _game;
 }
 
@@ -43,22 +45,7 @@
 }
 
 - (void) updateUI {
-    for (UIButton *cardButton in self.cardButtons) {
-        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        UIImage *cardBackImage = [UIImage imageNamed:@"cardback.jpg"];
-        if (!card.faceUp && !card.unplayable) {
-            [cardButton setImage:cardBackImage forState:UIControlStateNormal];
-//            [cardButton setImageEdgeInsets:UIEdgeInsetsMake(3, 0, 3, 0)];
-        }
-        else {
-            [cardButton setImage:nil forState:UIControlStateNormal];
-            [cardButton setTitle:[card contents] forState:UIControlStateSelected];
-            [cardButton setTitle:[card contents] forState:UIControlStateSelected|UIControlStateDisabled];
-        }    
-        cardButton.selected = card.isFaceUP;
-        cardButton.enabled = !card.isUnplayable;
-        cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
-    }
+    [self updateGame:[self cardButtons]];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.resultLabel.text = self.game.result;
 }
