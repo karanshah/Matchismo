@@ -17,7 +17,7 @@
 @property (nonatomic) NSInteger gameType;
 @property (strong, nonatomic) Deck *deck;
 @property (strong, nonatomic) IBOutlet UILabel *resultLabel;
-
+@property (strong, nonatomic) NSMutableAttributedString *attributedResult;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 @end
@@ -47,7 +47,7 @@
 - (void) updateUI {
     [self updateGame:[self cardButtons]];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    self.resultLabel.text = self.game.result;
+    self.resultLabel.attributedText = self.attributedResult;
 }
 
 - (void)setCardButtons:(NSArray *)cardButtons {
@@ -63,6 +63,7 @@
 - (IBAction)dealNewGame:(UIButton *)sender {
     self.game = nil;
     self.deck = nil;
+    self.attributedResult = nil;
     self.flipCount = 0;
     self.gameType = 0;
     self.gameTypeSegment.userInteractionEnabled = YES;
@@ -78,9 +79,62 @@
         self.gameTypeSegment.userInteractionEnabled = NO;
         self.gameTypeSegment.alpha = 0.5;
     }
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
+    NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
+    NSArray *resultArray = [self.game flipCardAtIndex:cardIndex];
+    [self getResultText:resultArray];
     sender.selected ? self.flipCount : self.flipCount++;
     [self updateUI];
+}
+
+- (void) getResultText:(NSArray *) resultArray {
+    NSMutableAttributedString *resultAttributedString = [[NSMutableAttributedString alloc] init];
+    for (id resultObject in resultArray) {
+        if ([resultObject isKindOfClass:[NSArray class]]) {
+            NSArray *resultObjectArray = (NSArray *) resultObject;
+            for (int i = 0; i < resultObjectArray.count; i++) {
+                
+                [resultAttributedString appendAttributedString:[self getAttributesForCardAsId:resultObjectArray[i]]];
+                if (i < resultObjectArray.count-1) {
+                    [resultAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@", "]];
+                }
+            }
+        }
+        else if ([resultObject isKindOfClass:[Card class]]) {
+            [resultAttributedString appendAttributedString:[self getAttributesForCardAsId:resultObject]];
+        }
+        else if ([resultObject isKindOfClass:[NSString class]]) {
+            NSString *objectString = (NSString *) resultObject;
+            [resultAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:objectString]];
+        }
+        [resultAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+    }
+    self.attributedResult = resultAttributedString;
+}
+
+- (NSAttributedString *) getAttributesForCardAsId:(id) resultObject {
+    NSAttributedString *cardAttributedTitle = nil;
+    if ([resultObject isKindOfClass:[Card class]]) {
+        Card *card = (Card *) resultObject;
+        cardAttributedTitle = [[NSAttributedString alloc] initWithString:[card contents] attributes:[self getCardAttributes:card]];
+    }
+    return cardAttributedTitle;
+}
+
+//-(void) getResultText: (NSUInteger)index {
+//    NSMutableAttributedString *resultAttributedString = [[NSMutableAttributedString alloc] initWithString:@"Flipped up "];
+//    Card *card = [self.game cardAtIndex:index];
+//    NSAttributedString *cardAttributedTitle = [[NSAttributedString alloc] initWithString:[card contents] attributes:[self getCardAttributes:card]];
+//    if ([self.game.result isEqualToString:@"Matched"]) {
+//        
+//    }
+//    else {
+//        [resultAttributedString appendAttributedString:cardAttributedTitle];
+//    }
+//    self.attributedResult = resultAttributedString;
+//}
+
+- (NSDictionary *) getCardAttributes:(Card *)card {
+    return [[NSDictionary alloc] init];
 }
 
 @end

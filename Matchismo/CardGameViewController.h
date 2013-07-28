@@ -14,5 +14,6 @@
 @property (strong, nonatomic) CardMatchingGame *game;
 
 - (void) updateGame:(NSArray*) cardButtons;
+- (NSDictionary *) getCardAttributes:(Card *)card;
 
 @end
