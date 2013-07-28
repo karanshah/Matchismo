@@ -10,6 +10,8 @@
 		FC13138317A32117008AA72B /* MatchCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC13138217A32117008AA72B /* MatchCardGameViewController.m */; };
 		FC2A618C179E39000077016E /* cardback.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FC2A618B179E39000077016E /* cardback.jpg */; };
 		FC46983417A45BEE00596C05 /* SetCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC46983317A45BEE00596C05 /* SetCardGameViewController.m */; };
+		FC46983717A465BA00596C05 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = FC46983617A465BA00596C05 /* SetCard.m */; };
+		FC46983A17A481FB00596C05 /* SetCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = FC46983917A481FB00596C05 /* SetCardDeck.m */; };
 		FC8516E0179766190044A628 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8516DF179766190044A628 /* UIKit.framework */; };
 		FC8516E2179766190044A628 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8516E1179766190044A628 /* Foundation.framework */; };
 		FC8516E4179766190044A628 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8516E3179766190044A628 /* CoreGraphics.framework */; };
@@ -34,6 +36,10 @@
 		FC2A618B179E39000077016E /* cardback.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cardback.jpg; sourceTree = "<group>"; };
 		FC46983217A45BEE00596C05 /* SetCardGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCardGameViewController.h; sourceTree = "<group>"; };
 		FC46983317A45BEE00596C05 /* SetCardGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCardGameViewController.m; sourceTree = "<group>"; };
+		FC46983517A465BA00596C05 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetCard.h; path = Model/SetCard.h; sourceTree = "<group>"; };
+		FC46983617A465BA00596C05 /* SetCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCard.m; path = Model/SetCard.m; sourceTree = "<group>"; };
+		FC46983817A481FB00596C05 /* SetCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetCardDeck.h; path = Model/SetCardDeck.h; sourceTree = "<group>"; };
+		FC46983917A481FB00596C05 /* SetCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCardDeck.m; path = Model/SetCardDeck.m; sourceTree = "<group>"; };
 		FC8516DC179766190044A628 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8516DF179766190044A628 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC8516E1179766190044A628 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -149,6 +155,10 @@
 				FC85170D17977EF20044A628 /* PlayingCardDeck.m */,
 				FC90FE0217999167005F6CC7 /* CardMatchingGame.h */,
 				FC90FE0317999167005F6CC7 /* CardMatchingGame.m */,
+				FC46983517A465BA00596C05 /* SetCard.h */,
+				FC46983617A465BA00596C05 /* SetCard.m */,
+				FC46983817A481FB00596C05 /* SetCardDeck.h */,
+				FC46983917A481FB00596C05 /* SetCardDeck.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -231,6 +241,8 @@
 				FC90FE0417999167005F6CC7 /* CardMatchingGame.m in Sources */,
 				FC13138317A32117008AA72B /* MatchCardGameViewController.m in Sources */,
 				FC46983417A45BEE00596C05 /* SetCardGameViewController.m in Sources */,
+				FC46983717A465BA00596C05 /* SetCard.m in Sources */,
+				FC46983A17A481FB00596C05 /* SetCardDeck.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

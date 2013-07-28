@@ -7,32 +7,63 @@
 //
 
 #import "SetCardGameViewController.h"
+#import "SetCardDeck.h"
+#import "SetCard.h"
 
 @interface SetCardGameViewController ()
-
+@property (strong, nonatomic) Deck *deck;
 @end
 
 @implementation SetCardGameViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+- (Deck *) deck {
+    if(!_deck) {
+        _deck = [[SetCardDeck alloc] init];
     }
-    return self;
+    return _deck;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+- (void) updateGame:(NSArray *)cardButtons {
+    for (UIButton *cardButton in cardButtons) {
+        Card *card = [self.game cardAtIndex:[cardButtons indexOfObject:cardButton]];
+        NSAttributedString *cardAttributedTitle = [[NSAttributedString alloc] initWithString:[card contents] attributes:[self getCardAttributes:card]];
+        [cardButton setAttributedTitle:cardAttributedTitle forState:UIControlStateNormal];
+        [cardButton setBackgroundColor:(card.isFaceUP) ? [UIColor lightGrayColor] : nil];
+        cardButton.alpha = card.isUnplayable ? 0.0 : 1.0;
+    }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSDictionary *) getCardAttributes:(Card *)card {
+    NSDictionary *attributeDictionary = nil;
+    UIColor *color = nil;
+    
+    if ([card isKindOfClass:[SetCard class]]) {
+        SetCard *setCard = (SetCard *) card;
+        
+        if ([setCard.color isEqualToString:@"red"]) {
+            color = [UIColor redColor];
+        }
+        else if ([setCard.color isEqualToString:@"blue"]) {
+            color = [UIColor blueColor];
+        }
+        else if ([setCard.color isEqualToString:@"green"]) {
+            color = [UIColor greenColor];
+        }
+        
+        if ([setCard.shading isEqualToString:@"solid"]) {
+            attributeDictionary = @{NSForegroundColorAttributeName: color};
+        }
+        else if ([setCard.shading isEqualToString:@"stripped"]) {
+            attributeDictionary = @{NSStrokeColorAttributeName: color,
+                                    NSStrokeWidthAttributeName: @(-5),
+                                    NSForegroundColorAttributeName:[color colorWithAlphaComponent:0.2F]};
+        }
+        else if ([setCard.shading isEqualToString:@"open"]) {
+            attributeDictionary = @{NSStrokeColorAttributeName: color,NSStrokeWidthAttributeName: @(5)};
+        }
+    }
+    
+    return attributeDictionary;
 }
 
 @end

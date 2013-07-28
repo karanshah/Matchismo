@@ -7,7 +7,7 @@
 //
 
 #import "CardMatchingGame.h"
-#import "PlayingCard.h"
+//#import "Card.h"
 
 @interface CardMatchingGame()
 @property (strong, nonatomic) NSMutableArray *cards;
@@ -55,12 +55,12 @@
 #define FLIP_COST 1
 
 - (void)flipCardAtIndex:(NSUInteger)index {
-    PlayingCard *card = (PlayingCard *)[self cardAtIndex:index];
+    Card *card = (Card *)[self cardAtIndex:index];
     if (!card.isUnplayable) {
         if (!card.isFaceUP) {
             NSArray *resultArray = @[@"Flipped up ", card.contents];
             //see if flipping this card up creates a match
-            for (PlayingCard *otherCard in self.cards) {
+            for (Card *otherCard in self.cards) {
                 if (otherCard.isFaceUP && !otherCard.isUnplayable) {
                     NSArray *otherCards = @[otherCard];
                     if (self.gameType == 3) {
@@ -114,7 +114,7 @@
 
 - (NSArray *) getThirdCardToMatch:(NSArray *)otherCards {
     Card *otherCard = [otherCards lastObject];
-    for (PlayingCard *thirdCard in self.cards) {
+    for (Card *thirdCard in self.cards) {
         if (thirdCard.isFaceUP && !thirdCard.isUnplayable) {
             if (![otherCard isEqual:thirdCard]) {
                 return @[otherCard, thirdCard];
