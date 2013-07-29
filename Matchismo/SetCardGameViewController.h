@@ -10,4 +10,6 @@
 
 @interface SetCardGameViewController : CardGameViewController
 
+@property (nonatomic) NSInteger gameType;
+
 @end

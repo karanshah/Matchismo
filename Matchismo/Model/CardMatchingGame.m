@@ -24,7 +24,8 @@
 }
 
 - (id)initWithCardCount:(NSUInteger)cardCount
-              usingDeck:(Deck *)deck {
+              usingDeck:(Deck *)deck
+           withGameType:(NSInteger)typeOfGame {
     self = [super init];
     
     if(self) {
@@ -39,7 +40,7 @@
             }
         }
     }
-    self.gameType = 2;
+    self.gameType = typeOfGame;
     return self;
 }
 

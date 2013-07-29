@@ -33,6 +33,16 @@
     }
 }
 
+@synthesize gameType = _gameType;
+
+- (NSInteger) gameType {
+    if (!_gameType) {
+        _gameType = 3;
+    }
+    return _gameType;
+}
+
+
 - (NSDictionary *) getCardAttributes:(Card *)card {
     NSDictionary *attributeDictionary = nil;
     UIColor *color = nil;

@@ -13,7 +13,8 @@
 
 //designated initializer
 - (id)initWithCardCount:(NSUInteger)cardCount
-              usingDeck:(Deck *)deck;
+              usingDeck:(Deck *)deck
+           withGameType:(NSInteger) typeOfGame;
 
 - (NSArray *)flipCardAtIndex:(NSUInteger)index;
 

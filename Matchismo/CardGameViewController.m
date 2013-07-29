@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) int flipCount;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *gameTypeSegment;
-@property (nonatomic) NSInteger gameType;
+
 @property (strong, nonatomic) Deck *deck;
 @property (strong, nonatomic) IBOutlet UILabel *resultLabel;
 @property (strong, nonatomic) NSMutableAttributedString *attributedResult;
@@ -34,8 +34,11 @@
 }
 
 - (CardMatchingGame *)game {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
-                                                          usingDeck:[self deck]];
+    if (!_game) {
+        _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
+                                                  usingDeck:[self deck]
+                                               withGameType:[self gameType]];
+    }
     return _game;
 }
 
@@ -120,21 +123,15 @@
     return cardAttributedTitle;
 }
 
-//-(void) getResultText: (NSUInteger)index {
-//    NSMutableAttributedString *resultAttributedString = [[NSMutableAttributedString alloc] initWithString:@"Flipped up "];
-//    Card *card = [self.game cardAtIndex:index];
-//    NSAttributedString *cardAttributedTitle = [[NSAttributedString alloc] initWithString:[card contents] attributes:[self getCardAttributes:card]];
-//    if ([self.game.result isEqualToString:@"Matched"]) {
-//        
-//    }
-//    else {
-//        [resultAttributedString appendAttributedString:cardAttributedTitle];
-//    }
-//    self.attributedResult = resultAttributedString;
-//}
-
 - (NSDictionary *) getCardAttributes:(Card *)card {
     return [[NSDictionary alloc] init];
+}
+
+- (NSInteger) gameType {
+    if (!_gameType) {
+        _gameType = 2;
+    }
+    return _gameType;
 }
 
 @end
