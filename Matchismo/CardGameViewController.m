@@ -5,6 +5,7 @@
 //  Created by Karan Shah on 7/17/13.
 //  Copyright (c) 2013 Karan Shah. All rights reserved.
 //
+//  Icons by Glyphish
 
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"

@@ -12,6 +12,8 @@
 		FC46983417A45BEE00596C05 /* SetCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC46983317A45BEE00596C05 /* SetCardGameViewController.m */; };
 		FC46983717A465BA00596C05 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = FC46983617A465BA00596C05 /* SetCard.m */; };
 		FC46983A17A481FB00596C05 /* SetCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = FC46983917A481FB00596C05 /* SetCardDeck.m */; };
+		FC55C7A117A6051200D8C246 /* 130-dice.png in Resources */ = {isa = PBXBuildFile; fileRef = FC55C7A017A6051200D8C246 /* 130-dice.png */; };
+		FC55C7A317A6052500D8C246 /* 198-card-spades.png in Resources */ = {isa = PBXBuildFile; fileRef = FC55C7A217A6052500D8C246 /* 198-card-spades.png */; };
 		FC8516E0179766190044A628 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8516DF179766190044A628 /* UIKit.framework */; };
 		FC8516E2179766190044A628 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8516E1179766190044A628 /* Foundation.framework */; };
 		FC8516E4179766190044A628 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8516E3179766190044A628 /* CoreGraphics.framework */; };
@@ -40,6 +42,8 @@
 		FC46983617A465BA00596C05 /* SetCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCard.m; path = Model/SetCard.m; sourceTree = "<group>"; };
 		FC46983817A481FB00596C05 /* SetCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetCardDeck.h; path = Model/SetCardDeck.h; sourceTree = "<group>"; };
 		FC46983917A481FB00596C05 /* SetCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCardDeck.m; path = Model/SetCardDeck.m; sourceTree = "<group>"; };
+		FC55C7A017A6051200D8C246 /* 130-dice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "130-dice.png"; sourceTree = "<group>"; };
+		FC55C7A217A6052500D8C246 /* 198-card-spades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "198-card-spades.png"; sourceTree = "<group>"; };
 		FC8516DC179766190044A628 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8516DF179766190044A628 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC8516E1179766190044A628 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -128,6 +132,8 @@
 		FC8516E6179766190044A628 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FC55C7A017A6051200D8C246 /* 130-dice.png */,
+				FC55C7A217A6052500D8C246 /* 198-card-spades.png */,
 				FC2A618B179E39000077016E /* cardback.jpg */,
 				FC8516EE179766190044A628 /* CardGameAppDelegate.h */,
 				FC8516EF179766190044A628 /* CardGameAppDelegate.m */,
@@ -221,6 +227,8 @@
 				FC8516F6179766190044A628 /* Default-568h@2x.png in Resources */,
 				FC8516F9179766190044A628 /* MainStoryboard.storyboard in Resources */,
 				FC2A618C179E39000077016E /* cardback.jpg in Resources */,
+				FC55C7A117A6051200D8C246 /* 130-dice.png in Resources */,
+				FC55C7A317A6052500D8C246 /* 198-card-spades.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -307,7 +307,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Game" id="aTH-Q4-kDN"/>
+                    <tabBarItem key="tabBarItem" title="Game" image="198-card-spades.png" id="aTH-Q4-kDN"/>
                     <connections>
                         <outlet property="flipsLabel" destination="fdz-Ey-PnJ" id="jIM-E9-Ljr"/>
                         <outlet property="resultLabel" destination="USb-QL-80m" id="tCD-Pe-slt"/>
@@ -761,7 +761,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Set" id="xtP-dj-Y6c"/>
+                    <tabBarItem key="tabBarItem" title="Set" image="130-dice.png" id="xtP-dj-Y6c"/>
                     <connections>
                         <outlet property="flipsLabel" destination="SxS-He-YUm" id="yqI-5A-WJY"/>
                         <outlet property="resultLabel" destination="RbZ-B1-0v5" id="jtX-ax-AEC"/>
@@ -797,6 +797,10 @@
             <point key="canvasLocation" x="931" y="225"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="130-dice.png" width="35" height="28"/>
+        <image name="198-card-spades.png" width="16" height="24"/>
+    </resources>
     <classes>
         <class className="CardGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
