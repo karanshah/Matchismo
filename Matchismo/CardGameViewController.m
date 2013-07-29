@@ -5,6 +5,7 @@
 //  Created by Karan Shah on 7/17/13.
 //  Copyright (c) 2013 Karan Shah. All rights reserved.
 //
+//  Icons by Glyphish
 
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
@@ -14,26 +15,31 @@
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) int flipCount;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *gameTypeSegment;
-@property (nonatomic) NSInteger gameType;
+
 @property (strong, nonatomic) Deck *deck;
 @property (strong, nonatomic) IBOutlet UILabel *resultLabel;
-@property (strong, nonatomic) CardMatchingGame *game;
+@property (strong, nonatomic) NSMutableAttributedString *attributedResult;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 @end
 
 @implementation CardGameViewController
 
+//Subclasses should implement this
 - (Deck *)deck {
-    if (!_deck) {
-        _deck = [[PlayingCardDeck alloc] init];
-    }
-    return _deck;
+    return nil;
+}
+
+- (void) updateGame:(NSArray *)cardButtons {
+
 }
 
 - (CardMatchingGame *)game {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
-                                                          usingDeck:[[PlayingCardDeck alloc] init]];
+    if (!_game) {
+        _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
+                                                  usingDeck:[self deck]
+                                               withGameType:[self gameType]];
+    }
     return _game;
 }
 
@@ -43,24 +49,9 @@
 }
 
 - (void) updateUI {
-    for (UIButton *cardButton in self.cardButtons) {
-        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        UIImage *cardBackImage = [UIImage imageNamed:@"cardback.jpg"];
-        if (!card.faceUp && !card.unplayable) {
-            [cardButton setImage:cardBackImage forState:UIControlStateNormal];
-//            [cardButton setImageEdgeInsets:UIEdgeInsetsMake(3, 0, 3, 0)];
-        }
-        else {
-            [cardButton setImage:nil forState:UIControlStateNormal];
-            [cardButton setTitle:[card contents] forState:UIControlStateSelected];
-            [cardButton setTitle:[card contents] forState:UIControlStateSelected|UIControlStateDisabled];
-        }    
-        cardButton.selected = card.isFaceUP;
-        cardButton.enabled = !card.isUnplayable;
-        cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
-    }
+    [self updateGame:[self cardButtons]];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    self.resultLabel.text = self.game.result;
+    self.resultLabel.attributedText = self.attributedResult;
 }
 
 - (void)setCardButtons:(NSArray *)cardButtons {
@@ -70,11 +61,13 @@
 - (void)setFlipCount:(int)flipCount {
     _flipCount = flipCount;
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
-//    NSLog(@"flips updated to %d", self.flipCount);
+    NSLog(@"flips updated to %d", self.flipCount);
 }
 
 - (IBAction)dealNewGame:(UIButton *)sender {
     self.game = nil;
+    self.deck = nil;
+    self.attributedResult = nil;
     self.flipCount = 0;
     self.gameType = 0;
     self.gameTypeSegment.userInteractionEnabled = YES;
@@ -83,16 +76,63 @@
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
-    NSLog(@"Slected Segment = %d", self.gameTypeSegment.selectedSegmentIndex);
+//    NSLog(@"Slected Segment = %d", self.gameTypeSegment.selectedSegmentIndex);
     if (self.gameType == 0) {
         self.gameType = self.gameTypeSegment.selectedSegmentIndex + 2;
         self.game.gameType = self.gameType;
         self.gameTypeSegment.userInteractionEnabled = NO;
         self.gameTypeSegment.alpha = 0.5;
     }
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    self.flipCount++;
+    NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
+    NSArray *resultArray = [self.game flipCardAtIndex:cardIndex];
+    [self getResultText:resultArray];
+    sender.selected ? self.flipCount : self.flipCount++;
     [self updateUI];
+}
+
+- (void) getResultText:(NSArray *) resultArray {
+    NSMutableAttributedString *resultAttributedString = [[NSMutableAttributedString alloc] init];
+    for (id resultObject in resultArray) {
+        if ([resultObject isKindOfClass:[NSArray class]]) {
+            NSArray *resultObjectArray = (NSArray *) resultObject;
+            for (int i = 0; i < resultObjectArray.count; i++) {
+                
+                [resultAttributedString appendAttributedString:[self getAttributesForCardAsId:resultObjectArray[i]]];
+                if (i < resultObjectArray.count-1) {
+                    [resultAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@", "]];
+                }
+            }
+        }
+        else if ([resultObject isKindOfClass:[Card class]]) {
+            [resultAttributedString appendAttributedString:[self getAttributesForCardAsId:resultObject]];
+        }
+        else if ([resultObject isKindOfClass:[NSString class]]) {
+            NSString *objectString = (NSString *) resultObject;
+            [resultAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:objectString]];
+        }
+        [resultAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+    }
+    self.attributedResult = resultAttributedString;
+}
+
+- (NSAttributedString *) getAttributesForCardAsId:(id) resultObject {
+    NSAttributedString *cardAttributedTitle = nil;
+    if ([resultObject isKindOfClass:[Card class]]) {
+        Card *card = (Card *) resultObject;
+        cardAttributedTitle = [[NSAttributedString alloc] initWithString:[card contents] attributes:[self getCardAttributes:card]];
+    }
+    return cardAttributedTitle;
+}
+
+- (NSDictionary *) getCardAttributes:(Card *)card {
+    return [[NSDictionary alloc] init];
+}
+
+- (NSInteger) gameType {
+    if (!_gameType) {
+        _gameType = 2;
+    }
+    return _gameType;
 }
 
 @end
