@@ -8,6 +8,8 @@
 
 #import "MatchCardGameViewController.h"
 #import "PlayingCardDeck.h"
+#import "PlayingCardCollectionViewCell.h"
+#import "PlayingCard.h"
 
 @interface MatchCardGameViewController()
 @property (strong, nonatomic) Deck *deck;
@@ -38,6 +40,23 @@
         cardButton.selected = card.isFaceUP;
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
+    }
+}
+
+- (NSUInteger) startingCardCount {
+    return 22;
+}
+
+- (void) updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card {
+    if ([cell isKindOfClass:[PlayingCardCollectionViewCell class]]) {
+        PlayingCardView *playingCardView = ((PlayingCardCollectionViewCell *) cell).playingCardView;
+        if ([card isKindOfClass:[PlayingCard class]]) {
+            PlayingCard *playingCard = (PlayingCard *) card;
+            playingCardView.rank = playingCard.rank;
+            playingCardView.suit = playingCard.suit;
+            playingCardView.faceUp = playingCard.faceUp;
+            playingCardView.alpha = playingCard.unplayable ? 0.3 : 1.0;
+        }
     }
 }
 
