@@ -52,7 +52,7 @@
 }
 
 + (NSArray *) validSymbols {
-    return @[@"▲", @"●", @"■"];
+    return @[@"diamond", @"oval", @"squiggle"];
 }
 
 @end

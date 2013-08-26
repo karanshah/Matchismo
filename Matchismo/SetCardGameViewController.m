@@ -9,6 +9,8 @@
 #import "SetCardGameViewController.h"
 #import "SetCardDeck.h"
 #import "SetCard.h"
+#import "SetCardCollectionViewCell.h"
+#import "SetCardView.h"
 
 @interface SetCardGameViewController ()
 @property (strong, nonatomic) Deck *deck;
@@ -31,6 +33,29 @@
         [cardButton setBackgroundColor:(card.isFaceUP) ? [UIColor lightGrayColor] : nil];
         cardButton.alpha = card.isUnplayable ? 0.0 : 1.0;
     }
+}
+
+- (void) updateCell:(UICollectionViewCell *)cell
+          usingCard:(Card *)card {
+    if ([cell isKindOfClass:[SetCardCollectionViewCell class]]) {
+        SetCardView *setCardView = ((SetCardCollectionViewCell *) cell).setCardView;
+        if([card isKindOfClass:[SetCard class]]) {
+            SetCard *setCard = (SetCard *)card;
+            setCardView.symbol = setCard.symbol;
+            setCardView.shading = setCard.shading;
+            setCardView.color = setCard.color;
+            setCardView.number = setCard.number;
+            setCardView.faceUp = setCard.faceUp;
+        }
+    }
+}
+
+- (NSUInteger) startingCardCount {
+    return 12;
+}
+
+- (NSString *) reusableCellId {
+    return @"SetCard";
 }
 
 @synthesize gameType = _gameType;
@@ -75,5 +100,6 @@
     
     return attributeDictionary;
 }
+
 
 @end
