@@ -17,8 +17,11 @@
            withGameType:(NSInteger) typeOfGame;
 
 - (NSArray *)flipCardAtIndex:(NSUInteger)index;
+- (void)removeCardAtIndex:(NSUInteger)index;
 
 - (Card *)cardAtIndex:(NSUInteger)index;
+
+- (NSUInteger) cardCount;
 
 @property (nonatomic, readonly) int score;
 

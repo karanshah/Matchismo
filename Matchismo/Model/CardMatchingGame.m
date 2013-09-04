@@ -91,6 +91,13 @@
     return resultArray;
 }
 
+- (void)removeCardAtIndex:(NSUInteger)index
+{
+    if (index < [self.cards count]) {
+        [self.cards removeObjectAtIndex:index];
+    }
+}
+
 - (void) updateOtherCards:(NSArray *)otherCards
                withResult:(BOOL)result {
     for (Card *otherCard in otherCards) {
@@ -113,6 +120,10 @@
         }
     }
     return otherCards;
+}
+
+- (NSUInteger) cardCount {
+    return self.cards.count;
 }
 
 @end
