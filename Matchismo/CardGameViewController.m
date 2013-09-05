@@ -173,4 +173,11 @@
     [self.cardCollectionView deleteItemsAtIndexPaths:@[indexPath]];
 }
 
+- (IBAction)addMoreCards:(UIButton *)sender {
+    NSUInteger startIndex = self.game.cardCount;
+    [self.game addCardsWithCount:startIndex + 3 usingDeck:self.deck intialIndex:startIndex];
+    [self.cardCollectionView reloadData];
+    [self updateUI];
+}
+
 @end

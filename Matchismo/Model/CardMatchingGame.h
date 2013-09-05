@@ -23,6 +23,10 @@
 
 - (NSUInteger) cardCount;
 
+- (BOOL) addCardsWithCount:(NSUInteger)cardCount
+                 usingDeck:(Deck *)deck
+               intialIndex:(NSUInteger) index;
+
 @property (nonatomic, readonly) int score;
 
 @property (nonatomic) NSInteger gameType;
