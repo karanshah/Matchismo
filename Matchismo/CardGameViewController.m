@@ -69,13 +69,13 @@
     for (UICollectionViewCell *cell in [self.cardCollectionView visibleCells]) {
         NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
         Card *card = [self.game cardAtIndex:indexPath.item];
-        if (card.isUnplayable) {
-            [self.game removeCardAtIndex:indexPath.item];
-            [self.cardCollectionView deleteItemsAtIndexPaths:@[indexPath]];
-        }
-        else {
+//        if (card.isUnplayable) {
+//            [self.game removeCardAtIndex:indexPath.item];
+//            [self.cardCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+//        }
+//        else {
             [self updateCell:cell usingCard:card];
-        }
+//        }
     
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
@@ -165,6 +165,12 @@
         _gameType = 2;
     }
     return _gameType;
+}
+
+- (void) removeCell:(UICollectionViewCell *)cell usingCard:(Card *) card {
+    NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
+    [self.game removeCardAtIndex:indexPath.item];
+    [self.cardCollectionView deleteItemsAtIndexPaths:@[indexPath]];
 }
 
 @end

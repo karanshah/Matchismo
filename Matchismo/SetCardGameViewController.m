@@ -37,7 +37,10 @@
 
 - (void) updateCell:(UICollectionViewCell *)cell
           usingCard:(Card *)card {
-    if ([cell isKindOfClass:[SetCardCollectionViewCell class]]) {
+    if (card.isUnplayable) {
+        [self removeCell:cell usingCard:card];
+    }
+    else if ([cell isKindOfClass:[SetCardCollectionViewCell class]]) {
         SetCardView *setCardView = ((SetCardCollectionViewCell *) cell).setCardView;
         if([card isKindOfClass:[SetCard class]]) {
             SetCard *setCard = (SetCard *)card;

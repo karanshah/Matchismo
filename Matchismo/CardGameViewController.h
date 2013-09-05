@@ -19,5 +19,6 @@
 //- (void) updateGame:(NSArray*) cardButtons;
 - (NSDictionary *) getCardAttributes:(Card *)card;
 - (void) updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card; //abstract
+- (void) removeCell:(UICollectionViewCell *)cell usingCard:(Card *) card;
 
 @end
