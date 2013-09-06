@@ -69,14 +69,7 @@
     for (UICollectionViewCell *cell in [self.cardCollectionView visibleCells]) {
         NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
         Card *card = [self.game cardAtIndex:indexPath.item];
-//        if (card.isUnplayable) {
-//            [self.game removeCardAtIndex:indexPath.item];
-//            [self.cardCollectionView deleteItemsAtIndexPaths:@[indexPath]];
-//        }
-//        else {
-            [self updateCell:cell usingCard:card];
-//        }
-    
+        [self updateCell:cell usingCard:card];
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.resultLabel.attributedText = self.attributedResult;
@@ -177,6 +170,9 @@
     NSUInteger startIndex = self.game.cardCount;
     [self.game addCardsWithCount:startIndex + 3 usingDeck:self.deck intialIndex:startIndex];
     [self.cardCollectionView reloadData];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:startIndex+2 inSection:0];
+    [self.cardCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+    
     [self updateUI];
 }
 
