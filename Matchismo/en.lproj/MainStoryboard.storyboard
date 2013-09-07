@@ -220,6 +220,7 @@
                     <tabBarItem key="tabBarItem" title="Set" image="130-dice.png" id="xtP-dj-Y6c"/>
                     <connections>
                         <outlet property="cardCollectionView" destination="Zmy-gc-4hd" id="FWa-Ne-QHn"/>
+                        <outlet property="moreCardsButton" destination="8cm-mR-qeu" id="lTJ-m3-zgS"/>
                         <outlet property="resultLabel" destination="RbZ-B1-0v5" id="jtX-ax-AEC"/>
                         <outlet property="scoreLabel" destination="caY-jA-2mX" id="Z88-Tc-s9b"/>
                     </connections>
@@ -242,11 +243,13 @@
         <class className="CardGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addMoreCards:" candidateClass="UIButton"/>
                 <relationship kind="action" name="dealNewGame:" candidateClass="UIButton"/>
                 <relationship kind="action" name="flipCard:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="outlet" name="cardCollectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="flipsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="gameTypeSegment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="moreCardsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="resultLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
             </relationships>

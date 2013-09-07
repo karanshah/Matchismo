@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSMutableAttributedString *attributedResult;
 //@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) IBOutlet UICollectionView *cardCollectionView;
+@property (strong, nonatomic) IBOutlet UIButton *moreCardsButton;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 @end
 
@@ -71,13 +72,21 @@
         Card *card = [self.game cardAtIndex:indexPath.item];
         [self updateCell:cell usingCard:card];
     }
+    [self updateMoreCardsButton];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.resultLabel.attributedText = self.attributedResult;
 }
 
-//- (void)setCardButtons:(NSArray *)cardButtons {
-//    _cardButtons = cardButtons;
-//}
+- (void)updateMoreCardsButton {
+    if (self.deck.hasMoreCards) {
+        self.moreCardsButton.enabled = YES;
+        self.moreCardsButton.alpha = 1.0;
+    }
+    else {
+        self.moreCardsButton.enabled = NO;
+        self.moreCardsButton.alpha = 0.4;
+    }
+}
 
 - (void)setFlipCount:(int)flipCount {
     _flipCount = flipCount;
@@ -94,6 +103,7 @@
     self.gameTypeSegment.userInteractionEnabled = YES;
     self.gameTypeSegment.alpha = 1.0;
     [self updateUI];
+    [self.cardCollectionView reloadData];
 }
 
 - (IBAction)flipCard:(UITapGestureRecognizer *)gesture {
@@ -162,8 +172,10 @@
 
 - (void) removeCell:(UICollectionViewCell *)cell usingCard:(Card *) card {
     NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
-    [self.game removeCardAtIndex:indexPath.item];
-    [self.cardCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+    if (indexPath) {
+        [self.game removeCardAtIndex:indexPath.item];
+        [self.cardCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+    }
 }
 
 - (IBAction)addMoreCards:(UIButton *)sender {
