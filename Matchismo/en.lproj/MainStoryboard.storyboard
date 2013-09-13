@@ -139,13 +139,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RbZ-B1-0v5">
-                                <rect key="frame" x="20" y="329" width="276" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rZa-AM-k1p">
                                 <rect key="frame" x="128" y="377" width="64" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -214,6 +207,21 @@
                                     <action selector="addMoreCards:" destination="1Gj-dE-84q" eventType="touchUpInside" id="pNE-SX-0sn"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" id="2oM-Lo-JIe" customClass="SetCardView">
+                                <rect key="frame" x="20" y="327" width="33" height="42"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="xi1-hq-VrB" customClass="SetCardView">
+                                <rect key="frame" x="267" y="327" width="33" height="42"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="EGK-a0-RuU" customClass="SetCardView">
+                                <rect key="frame" x="144" y="327" width="33" height="42"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -221,8 +229,10 @@
                     <connections>
                         <outlet property="cardCollectionView" destination="Zmy-gc-4hd" id="FWa-Ne-QHn"/>
                         <outlet property="moreCardsButton" destination="8cm-mR-qeu" id="lTJ-m3-zgS"/>
-                        <outlet property="resultLabel" destination="RbZ-B1-0v5" id="jtX-ax-AEC"/>
                         <outlet property="scoreLabel" destination="caY-jA-2mX" id="Z88-Tc-s9b"/>
+                        <outletCollection property="selectedCardViews" destination="2oM-Lo-JIe" id="LBO-up-a1W"/>
+                        <outletCollection property="selectedCardViews" destination="xi1-hq-VrB" id="JLv-8w-5Up"/>
+                        <outletCollection property="selectedCardViews" destination="EGK-a0-RuU" id="iPn-78-Dcz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BSr-9L-FDl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -252,6 +262,7 @@
                 <relationship kind="outlet" name="moreCardsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="resultLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outletCollection" name="selectedCardViews" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="MatchCardGameViewController" superclassName="CardGameViewController">

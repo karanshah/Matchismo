@@ -21,8 +21,10 @@
 @property (strong, nonatomic) NSMutableAttributedString *attributedResult;
 //@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) IBOutlet UICollectionView *cardCollectionView;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSMutableArray *selectedCardViews;
 @property (strong, nonatomic) IBOutlet UIButton *moreCardsButton;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (strong, nonatomic) NSArray *selectedCards;
 @end
 
 @implementation CardGameViewController
@@ -51,6 +53,10 @@
     //abstract
 }
 
+- (void)updateSelectedCardView:(UIView *)view usingCard:(Card *)card asMatchedCard:(BOOL)asMatchedCard {
+    //abstract
+}
+
 - (CardMatchingGame *)game {
     if (!_game) {
         _game = [[CardMatchingGame alloc] initWithCardCount:self.startingCardCount
@@ -71,6 +77,11 @@
         NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
         Card *card = [self.game cardAtIndex:indexPath.item];
         [self updateCell:cell usingCard:card];
+    }
+    if (self.selectedCardViews.count) {
+        for (int index = 0; index < self.selectedCardViews.count; index++) {
+            [self updateSelectedCardView:self.selectedCardViews[index] usingCard:(index < self.selectedCards.count) ? self.selectedCards[index] : nil asMatchedCard:self.selectedCards.count == self.selectedCardViews.count];
+        }
     }
     [self updateMoreCardsButton];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
@@ -97,6 +108,7 @@
 - (IBAction)dealNewGame:(UIButton *)sender {
     self.game = nil;
     self.deck = nil;
+    self.selectedCards = nil;
     self.attributedResult = nil;
     self.flipCount = 0;
     self.gameType = 0;
@@ -118,14 +130,38 @@
     NSIndexPath *indexPath = [self.cardCollectionView indexPathForItemAtPoint:tapLoction];
     if (indexPath) {
         NSArray *resultArray = [self.game flipCardAtIndex:indexPath.item];
-        [self getResultText:resultArray];
+        self.selectedCards = [self selectedCardsWithCard:[self.game cardAtIndex:indexPath.item]];
+        [self getResult:resultArray forSelectedCard:self.selectedCardViews];
 //        indexPath.item.selected ? self.flipCount : self.flipCount++;
         [self updateUI];
     }
     
 }
 
-- (void) getResultText:(NSArray *) resultArray {
+- (NSArray *)selectedCardsWithCard:(Card *)card {
+    NSMutableArray *selectedCardsToKeep = (self.selectedCards.count < self.selectedCardViews.count) ? [NSMutableArray arrayWithArray:self.selectedCards] : [[NSMutableArray alloc] init];
+    
+    if (card) {
+        if (self.selectedCards.count >= self.selectedCardViews.count) {
+            for (int index = 0; index < self.selectedCards.count; index++) {
+                Card *selectedCard = self.selectedCards[index];
+                if (selectedCard.faceUp && !selectedCard.isUnplayable) {
+                    [selectedCardsToKeep addObject:selectedCard];
+                }
+            }
+        }
+        
+        [selectedCardsToKeep removeObject:card];
+        
+        if (card.faceUp) {
+            [selectedCardsToKeep addObject:card];
+        }
+    }
+    
+    return selectedCardsToKeep;
+}
+
+- (void) getResult:(NSArray *) resultArray forSelectedCard:(NSMutableArray *) cardViews {
     NSMutableAttributedString *resultAttributedString = [[NSMutableAttributedString alloc] init];
     for (id resultObject in resultArray) {
         if ([resultObject isKindOfClass:[NSArray class]]) {
@@ -186,6 +222,14 @@
     [self.cardCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
     
     [self updateUI];
+}
+
+- (NSArray *)selectedCards {
+    if (!_selectedCards) {
+        _selectedCards = [[NSArray alloc] init];
+    }
+    
+    return _selectedCards;
 }
 
 @end

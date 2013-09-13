@@ -173,9 +173,9 @@
     [stripes stroke];
 }
 
-//Should be 1, 2 or 3
+//Should be 0, 1, 2 or 3
 - (void)setNumber:(NSInteger)number {
-    if (number >= 1 && number <= 3) {
+    if (number >= 0 && number <= 3) {
         _number = number;
         [self setNeedsDisplay];
     }
@@ -183,26 +183,29 @@
 
 //Should be @"diamond", @"oval" or @"squiggle"
 - (void)setSymbol:(NSString *)symbol {
+    _symbol = nil;
     if ([[SetCard validSymbols] containsObject:symbol]) {
         _symbol = symbol;
-        [self setNeedsDisplay];
     }
+    [self setNeedsDisplay];
 }
 
 //Should be @"open", @"stripped" or @"solid"
 - (void)setShading:(NSString *)shading {
+    _shading = nil;
     if ([[SetCard validShadings] containsObject:shading]) {
         _shading = shading;
-        [self setNeedsDisplay];
     }
+    [self setNeedsDisplay];
 }
 
 //Should be @"red", @"blue" or @"green"
 - (void)setColor:(NSString *)color {
+    _color = nil;
     if ([[SetCard validColors] containsObject:color]) {
         _color = color;
-        [self setNeedsDisplay];
     }
+    [self setNeedsDisplay];
 }
 
 - (void)setFaceUp:(BOOL)faceUp

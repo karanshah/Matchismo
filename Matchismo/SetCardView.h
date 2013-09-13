@@ -10,7 +10,7 @@
 
 @interface SetCardView : UIView
 
-//Should be 1, 2 or 3
+//Should be 0, 1, 2 or 3
 @property (nonatomic) NSInteger number;
 
 //Should be @"diamond", @"oval" or @"squiggle"
