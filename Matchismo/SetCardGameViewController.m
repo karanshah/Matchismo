@@ -9,6 +9,8 @@
 #import "SetCardGameViewController.h"
 #import "SetCardDeck.h"
 #import "SetCard.h"
+#import "SetCardCollectionViewCell.h"
+#import "SetCardView.h"
 
 @interface SetCardGameViewController ()
 @property (strong, nonatomic) Deck *deck;
@@ -31,6 +33,61 @@
         [cardButton setBackgroundColor:(card.isFaceUP) ? [UIColor lightGrayColor] : nil];
         cardButton.alpha = card.isUnplayable ? 0.0 : 1.0;
     }
+}
+
+- (void) updateCell:(UICollectionViewCell *)cell
+          usingCard:(Card *)card {
+    if (card.isUnplayable) {
+        [self removeCell:cell usingCard:card];
+    }
+    else if ([cell isKindOfClass:[SetCardCollectionViewCell class]]) {
+        SetCardView *setCardView = ((SetCardCollectionViewCell *) cell).setCardView;
+        if([card isKindOfClass:[SetCard class]]) {
+            SetCard *setCard = (SetCard *)card;
+            [self updateCardView:setCardView usingSetCard:setCard];
+        }
+    }
+}
+
+- (void) updateCardView:(SetCardView *)setCardView
+           usingSetCard:(SetCard *)setCard {
+    setCardView.symbol = setCard.symbol;
+    setCardView.shading = setCard.shading;
+    setCardView.color = setCard.color;
+    setCardView.number = setCard.number;
+    setCardView.faceUp = setCard.faceUp;
+}
+
+- (void)updateSelectedCardView:(UIView *)view usingCard:(Card *)card asMatchedCard:(BOOL)asMatchedCard {
+    if ([view isKindOfClass:[SetCardView class]]) {
+        SetCardView *setCardView = (SetCardView *)view;
+        if (!card) {
+            setCardView.symbol = nil;
+            setCardView.shading = nil;
+            setCardView.color = nil;
+            setCardView.number = 0;
+            setCardView.faceUp = NO;
+        }
+        [UIView transitionWithView:setCardView duration:0.2
+                           options:(asMatchedCard) ? UIViewAnimationOptionTransitionFlipFromTop : UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            if([card isKindOfClass:[SetCard class]]) {
+                                SetCard *setCard = (SetCard *)card;
+                                [self updateCardView:setCardView usingSetCard:setCard];
+                                setCardView.alpha = 1.0;
+                            }
+         
+                        }
+                        completion:NULL];
+    }
+}
+
+- (NSUInteger) startingCardCount {
+    return 12;
+}
+
+- (NSString *) reusableCellId {
+    return @"SetCard";
 }
 
 @synthesize gameType = _gameType;
@@ -75,5 +132,6 @@
     
     return attributeDictionary;
 }
+
 
 @end

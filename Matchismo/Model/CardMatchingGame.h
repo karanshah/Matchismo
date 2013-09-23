@@ -17,8 +17,15 @@
            withGameType:(NSInteger) typeOfGame;
 
 - (NSArray *)flipCardAtIndex:(NSUInteger)index;
+- (void)removeCardAtIndex:(NSUInteger)index;
 
 - (Card *)cardAtIndex:(NSUInteger)index;
+
+- (NSUInteger) cardCount;
+
+- (BOOL) addCardsWithCount:(NSUInteger)cardCount
+                 usingDeck:(Deck *)deck
+               intialIndex:(NSUInteger) index;
 
 @property (nonatomic, readonly) int score;
 

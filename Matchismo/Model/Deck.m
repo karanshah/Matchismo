@@ -40,4 +40,12 @@
     return randomCard;
 }
 
+- (BOOL)hasMoreCards {
+    BOOL moreCards = NO;
+    if (self.cards.count) {
+        moreCards = YES;
+    }
+    return moreCards;
+}
+
 @end

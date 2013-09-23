@@ -28,18 +28,11 @@
            withGameType:(NSInteger)typeOfGame {
     self = [super init];
     
-    if(self) {
-        for (int i = 0; i < cardCount; i++) {
-            Card *card = [deck drawRandomCard];
-            if(card) {
-                self.cards[i] = card;
-            }
-            else {
-                self = nil;
-                break;
-            }
-        }
+    BOOL added = [self addCardsWithCount:cardCount usingDeck:deck intialIndex:0];
+    if (added == NO) {
+        self = nil;
     }
+    
     self.gameType = typeOfGame;
     return self;
 }
@@ -91,6 +84,13 @@
     return resultArray;
 }
 
+- (void)removeCardAtIndex:(NSUInteger)index
+{
+    if (index < [self.cards count]) {
+        [self.cards removeObjectAtIndex:index];
+    }
+}
+
 - (void) updateOtherCards:(NSArray *)otherCards
                withResult:(BOOL)result {
     for (Card *otherCard in otherCards) {
@@ -113,6 +113,31 @@
         }
     }
     return otherCards;
+}
+
+- (NSUInteger) cardCount {
+    return self.cards.count;
+}
+
+- (BOOL) addCardsWithCount:(NSUInteger)cardCount
+                 usingDeck:(Deck *)deck
+               intialIndex:(NSUInteger) index {
+    BOOL added = YES;
+    
+    if(self) {
+        for (int i = index; i < cardCount; i++) {
+            Card *card = [deck drawRandomCard];
+            if(card) {
+                self.cards[i] = card;
+            }
+            else {
+                added = NO;
+                break;
+            }
+        }
+    }
+
+    return added;
 }
 
 @end

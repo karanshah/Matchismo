@@ -15,4 +15,6 @@
 
 - (Card *)drawRandomCard;
 
+- (BOOL)hasMoreCards;
+
 @end
