@@ -1,13 +1,17 @@
 Matchismo
 ========================
 
-Stanford Winter Class 13 Assignment 1 & 2
+Stanford Winter Class 13 Assignment 1, 2 and 3
 
-This assignment is to allow users to match 2 or 3 cards based on the rank or suit.  Assignment 2 was to add Set game (http://en.wikipedia.org/wiki/Set_(game))
+This assignment is to allow users to match 2 or 3 cards based on the rank or suit.  
+
+-- Assingment 3 --
+
+Create custom UIView subclasses and using UICollectionView to build better versions of Set and the Playing Card matching games that look (and in the Set case, play) more like the real thing.
 
 -- Assignment 2 --
 
-Objective of this assignment is to enhance the solution from Assignment 1 to add a second card game, Set, to the card matching game
+Add Set game (http://en.wikipedia.org/wiki/Set_(game)).  Objective of this assignment is to enhance the solution from Assignment 1 to add a second card game, Set, to the card matching game
 
 -- Assignment 1 --
 
